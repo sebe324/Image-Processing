@@ -1,0 +1,7 @@
+Sobel Edge Detection
+
+As the name suggests this algorithm detects edges.
+Two kernels detect edges in horizontal
+and vertical directions.
+Then two results get combined and output
+image is produced.

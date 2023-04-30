@@ -1,0 +1,7 @@
+Median Filter
+
+This algorithm reduces the noise of an image.
+It sorts all neighbours' light values and then
+changes the value of the pixel to the median
+of those values.
+

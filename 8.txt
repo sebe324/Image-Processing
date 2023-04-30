@@ -1,0 +1,7 @@
+Adaptive Treshold
+
+This algorithm binarizes an image.
+Instead of checking if the pixel's value is above
+or below a certain point, now we also consider
+pixel's neighbors. The treshold changes according to
+near pixels.

@@ -1,0 +1,3 @@
+Welcome,
+this program demonstrates a handful of
+image processing algorithms.

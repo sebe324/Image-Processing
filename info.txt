@@ -1,0 +1,11 @@
+Select mode: 
+0. None
+1. Treshold
+2. Absolute Motion
+3. Temporal Filtering
+4. Convolution
+5. Sobel Edge
+6. Morphological
+7. Median
+8. Adaptive Treshold
+9. Asciify

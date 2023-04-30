@@ -1,0 +1,9 @@
+Morphological Operations
+
+Use the E/Q keys to increase/decrease the treshold.
+
+A - Erosion
+S - Dilation
+D - Edge
+
+

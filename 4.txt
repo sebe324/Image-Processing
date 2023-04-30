@@ -1,0 +1,15 @@
+Convolution
+
+In this example, a 3 by 3 kernel
+"scans" an image. 
+The kernel multiplies a pixel
+by it's corresponding kernel value and then
+adds it to the sum. After 9 additions the
+central pixel is changed to the sum. 
+Then the kernel moves to another pixel.
+
+Use the Q/W/E keys to change kernels.
+Q - blur kernel
+W - sharpen kernel
+E - cool effect kernel
+
