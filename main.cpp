@@ -5,6 +5,8 @@
 #include <fstream>
 #include <algorithm>
 #include "ImgProc.h"
+#include "Util.h"
+
 
 using namespace cv;
 
@@ -81,6 +83,10 @@ int main()
 	 description.setCharacterSize(24);
 	 description.setPosition(820.f,400.f);
 	 
+	 sf::Text saveLabel;
+	 saveLabel.setFont(font);
+	 saveLabel.setString("Press P to save output to a file");
+	 saveLabel.setPosition(800.f,720.f);
 	//capture camera
 	VideoCapture cam;
 	cam.open(0);
@@ -134,6 +140,17 @@ int main()
 				key=event.text.unicode;
 				description.setString(loadTextFromFile(std::string(1,key)+".txt"));
 				}
+			else if(event.text.unicode=='p'){
+				if(!Util::doesDirectoryExist("images"))
+					Util::createDirectory("images");
+				if(key==ASCIIFY){ 
+				Mat resized_up;
+				resize(inputFrame.clone(), resized_up, Size(inputFrame.cols*2, inputFrame.rows*2), INTER_LINEAR);
+				ImgProc::asciify(resized_up,resized_up,asciifyDivider*2,asciifyFontSize*2);
+				imwrite("images/"+Util::getCurrentTime()+".png", resized_up);
+				}
+				else imwrite("images/"+Util::getCurrentTime()+".png", outputFrame);
+			}
 			switch(key){
 					case TRESHOLD:
 						
@@ -228,6 +245,7 @@ int main()
 		window.draw(outputSprite);
 		window.draw(info);
 		window.draw(description);
+		window.draw(saveLabel);
 		window.display();
 		
 		cam>>previousFrame;

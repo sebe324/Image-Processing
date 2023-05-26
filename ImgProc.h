@@ -15,7 +15,7 @@ namespace ImgProc
 	void morphologicalEdge(cv::Mat I, cv::Mat& O, uchar t);
 	void medianFilter(cv::Mat I, cv::Mat& O);
 	void adaptiveTreshold(cv::Mat I, cv::Mat &O, float t);
-	void asciify(cv::Mat I, cv::Mat& O, int divider, float fontSize);
+	void asciify(cv::Mat I, cv::Mat& O, int divider, float fontSize, int thickness=1);
 	
 	
 };

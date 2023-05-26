@@ -273,7 +273,7 @@ for(int y=0; y<nRows; y++){
 
 const char* characters=".'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
 
-void ImgProc::asciify(Mat I, Mat& O, int divider, float fontSize)
+void ImgProc::asciify(Mat I, Mat& O, int divider, float fontSize, int thickness)
 {
 CV_Assert(I.depth()==CV_8U);
 CV_Assert(O.depth()==CV_8U);
@@ -298,7 +298,7 @@ uchar* pTmp;
 for(int y=0; y<nRowsTmp; y++){
 	pTmp=tmp.ptr<uchar>(y);
 	for(int x=0; x<nColsTmp; x++){
-		putText(O,std::string(1,characters[int(pTmp[x]/3.7)]),Point(x*divider,y*divider), FONT_HERSHEY_SIMPLEX ,fontSize,(255,255,255),1);
+		putText(O,std::string(1,characters[int(pTmp[x]/3.7)]),Point(x*divider,y*divider), FONT_HERSHEY_SIMPLEX ,fontSize,(255,255,255),thickness);
 	}
 }
 
