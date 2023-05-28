@@ -130,126 +130,130 @@ int main()
 	
 	int selectedMorphological=0;
 	while(window.isOpen()){
-		sf::Event event;
-		while(window.pollEvent(event)){
-			if(event.type==sf::Event::Closed){
-			window.close();
-			}
-			else if(event.type==sf::Event::TextEntered){
-			if(event.text.unicode>='0'&& event.text.unicode<='9'){
-				key=event.text.unicode;
-				description.setString(loadTextFromFile(std::string(1,key)+".txt"));
+			sf::Event event;
+			while (window.pollEvent(event)) {
+				if (event.type == sf::Event::Closed) {
+					window.close();
 				}
-			else if(event.text.unicode=='p'){
-				if(!Util::doesDirectoryExist("images"))
-					Util::createDirectory("images");
-				if(key==ASCIIFY){ 
-				Mat resized_up;
-				resize(inputFrame.clone(), resized_up, Size(inputFrame.cols*2, inputFrame.rows*2), INTER_LINEAR);
-				ImgProc::asciify(resized_up,resized_up,asciifyDivider*2,asciifyFontSize*2);
-				imwrite("images/"+Util::getCurrentTime()+".png", resized_up);
-				}
-				else imwrite("images/"+Util::getCurrentTime()+".png", outputFrame);
-			}
-			switch(key){
+				else if (event.type == sf::Event::TextEntered) {
+					if (event.text.unicode >= '0' && event.text.unicode <= '9') {
+						key = event.text.unicode;
+						description.setString(loadTextFromFile(std::string(1, key) + ".txt"));
+					}
+					else if (event.text.unicode == 'p') {
+						if (!Util::doesDirectoryExist("images")) {
+							Util::createDirectory("images");
+						}
+
+						if (key == ASCIIFY) {
+							Mat resized_up;
+							resize(inputFrame.clone(), resized_up, Size(inputFrame.cols * 2, inputFrame.rows * 2), INTER_LINEAR);
+							ImgProc::asciify(resized_up, resized_up, asciifyDivider * 2, asciifyFontSize * 2);
+							imwrite("images" + Util::slash + Util::getCurrentTime() + ".png", resized_up);
+						}
+						else {
+							imwrite("images"+Util::slash + Util::getCurrentTime() + ".png", outputFrame);
+						}
+					}
+					switch (key) {
 					case TRESHOLD:
-						
-						if(event.text.unicode=='e' && tresholdValue>0) tresholdValue--;
-						else if(event.text.unicode=='q' && tresholdValue<255) tresholdValue++;
-					break;
+
+						if (event.text.unicode == 'e' && tresholdValue > 0) tresholdValue--;
+						else if (event.text.unicode == 'q' && tresholdValue < 255) tresholdValue++;
+						break;
 					case TEMPORAL_FILTERING:
-						if(event.text.unicode=='e' && temporalFilterValue<=0.95f) temporalFilterValue+=0.05f;
-						else if(event.text.unicode=='q' && temporalFilterValue >=0.05f) temporalFilterValue-=0.05f;
-					break;
+						if (event.text.unicode == 'e' && temporalFilterValue <= 0.95f) temporalFilterValue += 0.05f;
+						else if (event.text.unicode == 'q' && temporalFilterValue >= 0.05f) temporalFilterValue -= 0.05f;
+						break;
 					case CONVOLUTION:
-						if(event.text.unicode=='q') selectedKernel=blurKernel;
-						else if(event.text.unicode=='w') selectedKernel=sharpenKernel;
-						else if(event.text.unicode=='e') selectedKernel=illusionKernel;
-					break;
+						if (event.text.unicode == 'q') selectedKernel = blurKernel;
+						else if (event.text.unicode == 'w') selectedKernel = sharpenKernel;
+						else if (event.text.unicode == 'e') selectedKernel = illusionKernel;
+						break;
 					case MORPHOLOGICAL:
-						if(event.text.unicode=='e' && tresholdValue>0) tresholdValue--;
-						else if(event.text.unicode=='q' && tresholdValue<255) tresholdValue++;
-						if(event.text.unicode=='a') selectedMorphological=0;
-						else if(event.text.unicode=='s') selectedMorphological=1;
-						else if(event.text.unicode=='d') selectedMorphological=2;
-					break;
+						if (event.text.unicode == 'e' && tresholdValue > 0) tresholdValue--;
+						else if (event.text.unicode == 'q' && tresholdValue < 255) tresholdValue++;
+						if (event.text.unicode == 'a') selectedMorphological = 0;
+						else if (event.text.unicode == 's') selectedMorphological = 1;
+						else if (event.text.unicode == 'd') selectedMorphological = 2;
+						break;
 					case ASCIIFY:
-						if(event.text.unicode=='e' && asciifyDivider>1) asciifyDivider--;
-						else if(event.text.unicode=='q' && asciifyDivider<20) asciifyDivider++;
-						if(event.text.unicode=='d' && asciifyFontSize<=1) asciifyFontSize+=0.02;
-						else if(event.text.unicode=='a' && asciifyFontSize>=0.1) asciifyFontSize-=0.02;
-					break;
-					
+						if (event.text.unicode == 'e' && asciifyDivider > 1) asciifyDivider--;
+						else if (event.text.unicode == 'q' && asciifyDivider < 20) asciifyDivider++;
+						if (event.text.unicode == 'd' && asciifyFontSize <= 1) asciifyFontSize += 0.02;
+						else if (event.text.unicode == 'a' && asciifyFontSize >= 0.1) asciifyFontSize -= 0.02;
+						break;
+
+					}
 				}
 			}
-		}
-		
-		cam>>inputFrame;
-		resize(inputFrame,inputFrame,Size(770,400));
-		switch(key){
-		case NONE:
-			outputFrame=inputFrame.clone();
-		break;
-		case TRESHOLD:
-			ImgProc::treshold(inputFrame.clone(),outputFrame,tresholdValue);
-	
-		break;
-		case ABSOLUTE_MOTION:
-			ImgProc::absoluteMotion(inputFrame.clone(),previousFrame,outputFrame);
 
-		break;
-		case TEMPORAL_FILTERING:
-			ImgProc::temporalFiltering(inputFrame.clone(),outputFrame,temporalFilterValue);
+			cam >> inputFrame;
+			resize(inputFrame, inputFrame, Size(770, 400));
+			switch (key) {
+			case NONE:
+				outputFrame = inputFrame.clone();
+				break;
+			case TRESHOLD:
+				ImgProc::treshold(inputFrame.clone(), outputFrame, tresholdValue);
 
-		break;
-		case CONVOLUTION:
-			ImgProc::convolution(inputFrame.clone(),outputFrame,selectedKernel);
-		break;
-		case SOBEL_EDGE:
-			ImgProc::sobelEdge(inputFrame.clone(),outputFrame,kernelSobelHorizontal,kernelSobelVertical);
-		break;
-		case MORPHOLOGICAL:
-			switch(selectedMorphological)
-			{
-			case 0: ImgProc::morphologicalErosion(inputFrame.clone(),outputFrame,tresholdValue); break;
-			case 1: ImgProc::morphologicalDilation(inputFrame.clone(),outputFrame,tresholdValue); break;
-			case 2: ImgProc::morphologicalEdge(inputFrame.clone(),outputFrame,tresholdValue);break;
+				break;
+			case ABSOLUTE_MOTION:
+				ImgProc::absoluteMotion(inputFrame.clone(), previousFrame, outputFrame);
+
+				break;
+			case TEMPORAL_FILTERING:
+				ImgProc::temporalFiltering(inputFrame.clone(), outputFrame, temporalFilterValue);
+
+				break;
+			case CONVOLUTION:
+				ImgProc::convolution(inputFrame.clone(), outputFrame, selectedKernel);
+				break;
+			case SOBEL_EDGE:
+				ImgProc::sobelEdge(inputFrame.clone(), outputFrame, kernelSobelHorizontal, kernelSobelVertical);
+				break;
+			case MORPHOLOGICAL:
+				switch (selectedMorphological)
+				{
+				case 0: ImgProc::morphologicalErosion(inputFrame.clone(), outputFrame, tresholdValue); break;
+				case 1: ImgProc::morphologicalDilation(inputFrame.clone(), outputFrame, tresholdValue); break;
+				case 2: ImgProc::morphologicalEdge(inputFrame.clone(), outputFrame, tresholdValue); break;
+				}
+				break;
+			case MEDIAN:
+				ImgProc::medianFilter(inputFrame.clone(), outputFrame);
+				break;
+			case ADAPTIVE_TRESHOLD:
+				ImgProc::adaptiveTreshold(inputFrame.clone(), outputFrame, 1.f);
+				break;
+			case ASCIIFY:
+				ImgProc::asciify(inputFrame.clone(), outputFrame, asciifyDivider, asciifyFontSize);
+				break;
+			default:
+
+				break;
 			}
-		break;
-		case MEDIAN:
-			ImgProc::medianFilter(inputFrame.clone(),outputFrame);
-		break;
-		case ADAPTIVE_TRESHOLD:
-			ImgProc::adaptiveTreshold(inputFrame.clone(),outputFrame,1.f);
-		break;
-		case ASCIIFY:
-			ImgProc::asciify(inputFrame.clone(),outputFrame,asciifyDivider,asciifyFontSize);
-		break;
-		default:
-		
-		break;
+			if (inputFrame.channels() == 3) cvtColor(inputFrame, inputFrame, COLOR_BGR2RGBA);
+			else cvtColor(inputFrame, inputFrame, COLOR_GRAY2RGBA);
+			if (outputFrame.channels() == 3) cvtColor(outputFrame, outputFrame, COLOR_BGR2RGBA);
+			else cvtColor(outputFrame, outputFrame, COLOR_GRAY2RGBA);
+			inputImage.create(inputFrame.cols, inputFrame.rows, inputFrame.ptr());
+			outputImage.create(outputFrame.cols, outputFrame.rows, outputFrame.ptr());
+			if (!inputTexture.loadFromImage(inputImage)) break;
+			if (!outputTexture.loadFromImage(outputImage)) break;
+			inputSprite.setTexture(inputTexture);
+			outputSprite.setTexture(outputTexture);
+
+			window.clear(sf::Color(40, 40, 40));
+			window.draw(inputSprite);
+			window.draw(outputSprite);
+			window.draw(info);
+			window.draw(description);
+			window.draw(saveLabel);
+			window.display();
+
+			cam >> previousFrame;
+			resize(previousFrame, previousFrame, Size(770, 400));
 		}
-		if(inputFrame.channels()==3) cvtColor(inputFrame,inputFrame,COLOR_BGR2RGBA);
-		else cvtColor(inputFrame,inputFrame,COLOR_GRAY2RGBA);
-		if(outputFrame.channels()==3) cvtColor(outputFrame,outputFrame,COLOR_BGR2RGBA);
-		else cvtColor(outputFrame,outputFrame,COLOR_GRAY2RGBA);
-		inputImage.create(inputFrame.cols,inputFrame.rows,inputFrame.ptr());
-		outputImage.create(outputFrame.cols,outputFrame.rows,outputFrame.ptr());
-		if(!inputTexture.loadFromImage(inputImage)) break;
-		if(!outputTexture.loadFromImage(outputImage)) break;
-		inputSprite.setTexture(inputTexture);
-		outputSprite.setTexture(outputTexture);
-		
-		window.clear(sf::Color(40,40,40));
-		window.draw(inputSprite);
-		window.draw(outputSprite);
-		window.draw(info);
-		window.draw(description);
-		window.draw(saveLabel);
-		window.display();
-		
-		cam>>previousFrame;
-		resize(previousFrame,previousFrame,Size(770,400));
-	}
 	return 0;
 }
