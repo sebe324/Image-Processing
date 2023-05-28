@@ -152,6 +152,7 @@ int main()
 							imwrite("images" + Util::slash + Util::getCurrentTime() + ".png", resized_up);
 						}
 						else {
+							cvtColor(outputFrame, outputFrame, COLOR_BGR2RGB);
 							imwrite("images"+Util::slash + Util::getCurrentTime() + ".png", outputFrame);
 						}
 					}
