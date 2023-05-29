@@ -79,7 +79,7 @@ int main()
 	 sf::Text description;
 	 description.setFont(font);
 	 
-	 description.setCharacterSize(24);
+	 description.setCharacterSize(20);
 	 description.setPosition(820.f,400.f);
 	 
 	 sf::Text saveLabel;

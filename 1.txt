@@ -1,7 +1,8 @@
 Treshold
 
 This algorithm binarizes an image.
-If pixel's value is below a certain point, it turns black
-otherwise it turns white.
+If pixel's value is below a certain point, it
+turns black. Otherwise it turns white.
 
-Use the E/Q keys to increase/decrease the treshold.
+Use the E/Q keys to increase/decrease
+the treshold.

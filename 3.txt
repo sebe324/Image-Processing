@@ -6,4 +6,5 @@ from two images, then it multiplies that value
 by a given number and adds the value
 to the second image.
 
-Use the Q/E keys to decrease/increase the multiplier.
+Use the Q/E keys to decrease/increase
+the multiplier.

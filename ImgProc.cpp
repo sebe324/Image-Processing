@@ -230,8 +230,8 @@ cvtColor(O,O,COLOR_BGR2GRAY);
 int nRows=I.rows;
 int nCols=I.cols;
 
-for(int y=0; y<nRows; y++){
-		for(int x=0; x<nCols; x++){	
+for(int y=2; y<nRows-2; y++){
+		for(int x=2; x<nCols-2; x++){	
 		float v[25];
 			for(int n=-2; n<3; n++)
 				for(int m=-2; m<3; m++)
