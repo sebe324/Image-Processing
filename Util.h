@@ -3,6 +3,7 @@
 #include <string>
 #include <filesystem>
 #include <iostream>
+#include <algorithm>
 namespace Util
 {
 	std::string getCurrentTime();

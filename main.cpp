@@ -55,7 +55,6 @@ int main()
 {
 	//create window
 	sf::RenderWindow window(sf::VideoMode(1280,800), "elo");
-	
 	//sfml objects for displaying
 	sf::Image inputImage;
 	sf::Texture inputTexture;
@@ -89,12 +88,7 @@ int main()
 	 saveLabel.setPosition(800.f,720.f);
 	//capture camera
 	VideoCapture cam;
-	cam.open(0);
-	if(!cam.isOpened()){
-		std::cout<<"COULD NOT FIND A CAMERA";
-		return -1;
-	}
-	
+	std::cout<<"CAMERA STATUS: "<<cam.open(0)<<std::endl;
 	//opencv Matrices
 	Mat inputFrame;
 	Mat previousFrame;
@@ -121,7 +115,6 @@ int main()
 	};
 	
 	char key=NONE;
-	cam>>inputFrame;
 	outputSprite.setPosition(0.f,400.f);
 	inputSprite.setPosition(0.f,0.f);
 	description.setString(loadTextFromFile("0.txt"));
@@ -188,8 +181,18 @@ int main()
 					}
 				}
 			}
-
-			cam >> inputFrame;
+			try{
+			if(!cam.read(inputFrame)) throw 0;
+			}
+			catch(...)
+			{
+			inputFrame=Mat::zeros(770,400, CV_8UC3);
+			putText(inputFrame, "COULD NOT FIND A CAMERA.", Point(0,300),FONT_HERSHEY_SIMPLEX,0.8, (255,255,255),2);
+			
+			//Check if a camera exists
+			cam=VideoCapture();
+			cam.open(0);
+			}
 			resize(inputFrame, inputFrame, Size(770, 400));
 			switch (key) {
 			case NONE:
@@ -252,8 +255,14 @@ int main()
 			window.draw(description);
 			window.draw(saveLabel);
 			window.display();
-
-			cam >> previousFrame;
+			try{
+			if(!cam.read(previousFrame)) throw 0;
+			}
+			catch(...)
+			{
+			 previousFrame=Mat::zeros(770,400,CV_8UC3);
+			  putText(previousFrame, "COULD NOT FIND A CAMERA.", Point(0,300),FONT_HERSHEY_SIMPLEX,0.8, (255,255,255),2);
+			}
 			resize(previousFrame, previousFrame, Size(770, 400));
 		}
 	return 0;
