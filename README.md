@@ -1,17 +1,25 @@
 # Image-Processing
-A demonstration of various image processing algorithms using OpenCV
 
-## Example of one algorithm
+Real time demonstration of various image processing algorithms
 
-Input
+## App preview
 
-![Screenshot from 2023-04-26 22-05-26](https://user-images.githubusercontent.com/58781463/234690979-d42815d3-1d7e-45c6-a8f7-f2b09f088341.png)
-
-Output
-
-![Screenshot from 2023-04-26 22-05-32](https://user-images.githubusercontent.com/58781463/234691073-867d56e9-9be5-4e90-b5c2-5d524a4919de.png)
+![obraz](https://github.com/sebe324/Image-Processing/assets/58781463/6d805cab-a9f3-4a53-8d1e-e36d72e63bb8)
 
 This basically just turns an image to grayscale, resizes it to a smaller version and then places a character based on light value.
 
+## Project status
 
-I'm still new to openCV so this code is probably giga cringe
+This project is 99% finished. I don't plan to add more stuff to it.
+## How to build
+
+- Clone the source code
+- Add it to a project in your IDE.
+- Add the OpenCV library.
+-  [OpenCV download tutorial](https://docs.opencv.org/4.x/d3/d52/tutorial_windows_install.html), [OpenCV VS configuration](https://docs.opencv.org/4.x/dd/d6e/tutorial_windows_visual_studio_opencv.html)
+-  Add the SFML library
+-  [SFML VS configuration](https://www.sfml-dev.org/tutorials/2.6/start-vc.php)
+
+## Other
+
+This [video](https://www.youtube.com/watch?v=mRM5Js3VLCk) helped me with most of these algorithms.
