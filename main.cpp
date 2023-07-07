@@ -54,7 +54,7 @@ std::string loadTextFromFile(std::string fileName){
 int main()
 {
 	//create window
-	sf::RenderWindow window(sf::VideoMode(1280,800), "elo");
+	sf::RenderWindow window(sf::VideoMode(1280,800), "Image Processing");
 	//sfml objects for displaying
 	sf::Image inputImage;
 	sf::Texture inputTexture;
