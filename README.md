@@ -6,8 +6,6 @@ Real time demonstration of various image processing algorithms
 
 ![obraz](https://github.com/sebe324/Image-Processing/assets/58781463/6d805cab-a9f3-4a53-8d1e-e36d72e63bb8)
 
-This basically just turns an image to grayscale, resizes it to a smaller version and then places a character based on light value.
-
 ## Project status
 
 This project is 99% finished. I don't plan to add more stuff to it.
