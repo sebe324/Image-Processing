@@ -20,4 +20,4 @@ This project is 99% finished. I don't plan to add more stuff to it.
 
 ## Other
 
-This [video](https://www.youtube.com/watch?v=mRM5Js3VLCk) helped me with most of these algorithms.
+This [video](https://www.youtube.com/watch?v=mRM5Js3VLCk) helped me to understand a lot of concepts related to image processing.
