@@ -1,6 +1,7 @@
 Absolute Motion
 
-This algorithm detects if an image has changed.
+This algorithm detects if an
+image has changed.
 It calculates the absolute difference
 between pixels from two images.
 Then it colors the pixel depending on

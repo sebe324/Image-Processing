@@ -3,11 +3,14 @@ Asciify
 This algorithm represents an image
 in ASCII characters based on their light level.
 
-First the input image is downscaled by a divider,
-then the pixel is converted to an ASCII character
-and placed onto corresponding position to the
+First the input image is downscaled by a
+divider, then the pixel is converted to
+an ASCII character and placed onto
+corresponding position to the
 output image.
 
-Use the Q/E keys to decrease/increase the divider.
-Use the A/D keys to decrease/increase font size.
+Use the Q/E keys to decrease/increase
+the divider.
+Use the A/D keys to decrease/increase
+font size.
 

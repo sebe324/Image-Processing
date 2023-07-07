@@ -74,13 +74,13 @@ int main()
 	sf::Text info;
 	info.setFont(font);
 	info.setString(loadTextFromFile("info.txt"));
-	info.setPosition(820.f,50.f);
+	info.setPosition(800.f,50.f);
 	 		
 	 sf::Text description;
 	 description.setFont(font);
 	 
 	 description.setCharacterSize(20);
-	 description.setPosition(820.f,400.f);
+	 description.setPosition(800.f,400.f);
 	 
 	 sf::Text saveLabel;
 	 saveLabel.setFont(font);
