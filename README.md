@@ -11,6 +11,18 @@ Real time demonstration of various image processing algorithms
 This project is 99% finished. I don't plan to add more stuff to it.
 ## How to build
 
+### CMake
+- Clone the source code
+- Download SFML and OpenCV
+- In the CMakeLists.txt change the following lines:
+- ```set(CMAKE_PREFIX_PATH "C:\\libraries\\SFML-2.6.0-VC")```
+- ```set(CMAKE_PREFIX_PATH "C:\\libraries\\opencv\\build")```
+- ```target_include_directories(ImageProcessing PRIVATE "C:\\libraries\\opencv\\build\\include")```
+- ```target_include_directories(ImageProcessing PRIVATE "C:\\libraries\\SFML-2.6.0-VC\\include")```
+- To your download locations
+- Then in console in the project do: ```cmake .``` ```cmake --build .```
+- You may also need to move sfml and opencv DLLs to the folder with the executable.
+### IDE
 - Clone the source code
 - Add it to a project in your IDE.
 - Add the OpenCV library.
